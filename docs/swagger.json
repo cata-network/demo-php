@@ -1,0 +1,2193 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "藏品研究平台 接口文档",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/admin_jewel/all": {
+            "get": {
+                "tags": [
+                    "后台管理-藏品"
+                ],
+                "summary": "搜索接口（藏品）",
+                "operationId": "Admin_jewel::all",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "分类。1：书法；2：绘画",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "标签",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/admin_jewel/update_status": {
+            "post": {
+                "tags": [
+                    "后台管理-藏品"
+                ],
+                "summary": "标记藏品",
+                "operationId": "Admin_jewel::update_status",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "art_id": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "标记状态：null或0为未知，100为标准件",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/article/search": {
+            "get": {
+                "tags": [
+                    "对比报告"
+                ],
+                "summary": "搜索接口（报告）",
+                "description": "搜索对比报告",
+                "operationId": "Article::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/article/detail": {
+            "get": {
+                "tags": [
+                    "对比报告"
+                ],
+                "summary": "获取对比报告详情信息",
+                "operationId": "Article::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/article/create": {
+            "post": {
+                "tags": [
+                    "对比报告"
+                ],
+                "summary": "上传报告",
+                "operationId": "Article::create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "contents": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "width": {
+                                                    "type": "string"
+                                                },
+                                                "height": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/article/update": {
+            "post": {
+                "tags": [
+                    "对比报告"
+                ],
+                "summary": "更新报告信息",
+                "operationId": "Article::update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "contents": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "width": {
+                                                    "type": "string"
+                                                },
+                                                "height": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/article/delete": {
+            "get": {
+                "tags": [
+                    "对比报告"
+                ],
+                "summary": "删除我的报告",
+                "operationId": "Article::delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "报告id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/book_union/search": {
+            "get": {
+                "tags": [
+                    "图书"
+                ],
+                "summary": "搜索接口（图书）",
+                "description": "搜索；带翻页",
+                "operationId": "Book_union::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "publisher",
+                        "in": "query",
+                        "description": "出版社",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：出版时间",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/book_union/detail": {
+            "get": {
+                "tags": [
+                    "图书"
+                ],
+                "summary": "获取图书详情信息",
+                "operationId": "Book_union::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "doc_id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/book_union/page": {
+            "get": {
+                "tags": [
+                    "图书"
+                ],
+                "summary": "获取图书单页内容",
+                "operationId": "Book_union::page",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "图书 docId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页码",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/collection_book": {
+            "get": {
+                "tags": [
+                    "我的书库"
+                ],
+                "summary": "获得用户书库列表（书籍）",
+                "operationId": "Collection_book::index",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/collection_book/add": {
+            "get": {
+                "tags": [
+                    "我的书库"
+                ],
+                "summary": "添加到书库（书籍）",
+                "operationId": "Collection_book::add",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "文档类别，使用以下字段：book、thesis、paper",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "doc_id",
+                        "in": "query",
+                        "description": "书籍id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/collection_book/remove": {
+            "get": {
+                "tags": [
+                    "我的书库"
+                ],
+                "summary": "从书库中删除",
+                "operationId": "Collection_book::remove",
+                "parameters": [
+                    {
+                        "name": "doc_id",
+                        "in": "query",
+                        "description": "书籍id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/collection_jewel": {
+            "get": {
+                "tags": [
+                    "我的收藏"
+                ],
+                "summary": "获得用户收藏列表（藏品）",
+                "operationId": "Collection_jewel::index",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/collection_jewel/add": {
+            "get": {
+                "tags": [
+                    "我的收藏"
+                ],
+                "summary": "添加收藏（藏品）",
+                "operationId": "Collection_jewel::add",
+                "parameters": [
+                    {
+                        "name": "art_id",
+                        "in": "query",
+                        "description": "藏品id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/collection_jewel/remove": {
+            "get": {
+                "tags": [
+                    "我的收藏"
+                ],
+                "summary": "取消收藏",
+                "operationId": "Collection_jewel::remove",
+                "parameters": [
+                    {
+                        "name": "art_id",
+                        "in": "query",
+                        "description": "藏品id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/compare/search_to_be_identified": {
+            "get": {
+                "tags": [
+                    "对比"
+                ],
+                "summary": "搜索对比接口（待鉴定藏品）",
+                "description": "搜索待鉴定藏品，包括：私人藏品、标准藏品",
+                "operationId": "Compare::search_to_be_identified",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/compare/search_reference": {
+            "get": {
+                "tags": [
+                    "对比"
+                ],
+                "summary": "搜索对比接口（参照物）",
+                "description": "搜索参照物，包括：藏品、图书、印鉴",
+                "operationId": "Compare::search_reference",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/compare/search_book_content": {
+            "get": {
+                "tags": [
+                    "对比"
+                ],
+                "summary": "搜索书籍页面",
+                "operationId": "Compare::search_book_content",
+                "parameters": [
+                    {
+                        "name": "doc_id",
+                        "in": "query",
+                        "description": "书籍 doc_id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/jewel/search": {
+            "get": {
+                "tags": [
+                    "拍卖（原藏品）"
+                ],
+                "summary": "搜索接口（拍卖）",
+                "description": "搜索；带翻页；包括：书法、绘画",
+                "operationId": "Jewel::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "分类。1：书法；2：绘画",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mounting",
+                        "in": "query",
+                        "description": "装裱",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "create_age",
+                        "in": "query",
+                        "description": "创作年代",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：时间；2：价格",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/jewel/detail": {
+            "get": {
+                "tags": [
+                    "拍卖（原藏品）"
+                ],
+                "summary": "获取拍卖详情信息",
+                "operationId": "Jewel::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/paper/search": {
+            "get": {
+                "tags": [
+                    "期刊"
+                ],
+                "summary": "搜索接口（期刊）",
+                "description": "搜索；带翻页",
+                "operationId": "Paper::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgniz",
+                        "in": "query",
+                        "description": "单位",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：出版时间",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/paper/detail": {
+            "get": {
+                "tags": [
+                    "期刊"
+                ],
+                "summary": "获取期刊详情信息",
+                "operationId": "Paper::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/private_book/search": {
+            "get": {
+                "tags": [
+                    "私人库-书籍"
+                ],
+                "summary": "搜索接口（书籍）",
+                "description": "搜索；带翻页；包括：书法、绘画",
+                "operationId": "Private_book::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "分类。1：书法；2：绘画",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "标签",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/private_book/detail": {
+            "get": {
+                "tags": [
+                    "私人库-书籍"
+                ],
+                "summary": "获取私人库书籍详情信息",
+                "operationId": "Private_book::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/private_book/create": {
+            "post": {
+                "tags": [
+                    "私人库-书籍"
+                ],
+                "summary": "上传书籍",
+                "operationId": "Private_book::create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "file_url": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/private_book/update": {
+            "post": {
+                "tags": [
+                    "私人库-书籍"
+                ],
+                "summary": "更新书籍信息",
+                "operationId": "Private_book::update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "book_id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "file_url": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/private_book/delete": {
+            "get": {
+                "tags": [
+                    "私人库-书籍"
+                ],
+                "summary": "删除我的书籍",
+                "operationId": "Private_book::delete",
+                "parameters": [
+                    {
+                        "name": "book_id",
+                        "in": "query",
+                        "description": "书籍id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/private_jewel/search": {
+            "get": {
+                "tags": [
+                    "私人库-藏品"
+                ],
+                "summary": "搜索接口（藏品）",
+                "description": "搜索；带翻页；包括：书法、绘画",
+                "operationId": "Private_jewel::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "分类。1：书法；2：绘画",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "标签",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/private_jewel/detail": {
+            "get": {
+                "tags": [
+                    "私人库-藏品"
+                ],
+                "summary": "获取私人库藏品详情信息",
+                "operationId": "Private_jewel::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/private_jewel/create": {
+            "post": {
+                "tags": [
+                    "私人库-藏品"
+                ],
+                "summary": "上传藏品",
+                "operationId": "Private_jewel::create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "pictures": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "width": {
+                                                    "type": "string"
+                                                },
+                                                "height": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "custom": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/private_jewel/update": {
+            "post": {
+                "tags": [
+                    "私人库-藏品"
+                ],
+                "summary": "更新藏品信息",
+                "operationId": "Private_jewel::update",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string"
+                                    },
+                                    "jewel_id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "pictures": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "width": {
+                                                    "type": "string"
+                                                },
+                                                "height": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "custom": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/private_jewel/delete": {
+            "get": {
+                "tags": [
+                    "私人库-藏品"
+                ],
+                "summary": "删除我的藏品",
+                "operationId": "Private_jewel::delete",
+                "parameters": [
+                    {
+                        "name": "jewel_id",
+                        "in": "query",
+                        "description": "藏品id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/seal/search": {
+            "get": {
+                "tags": [
+                    "印鉴"
+                ],
+                "summary": "搜索接口（印鉴）",
+                "description": "搜索；带翻页",
+                "operationId": "Seal::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dynasty",
+                        "in": "query",
+                        "description": "朝代",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：朝代",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/seal/detail": {
+            "get": {
+                "tags": [
+                    "印鉴"
+                ],
+                "summary": "获取印鉴详情信息",
+                "operationId": "Seal::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/social_media/get_wexin_config": {
+            "get": {
+                "tags": [
+                    "微信"
+                ],
+                "summary": "获得微信配置",
+                "operationId": "Social_media::get_wexin_config",
+                "parameters": [
+                    {
+                        "name": "web_url",
+                        "in": "query",
+                        "description": "url",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/standard_jewel/search": {
+            "get": {
+                "tags": [
+                    "标准藏品"
+                ],
+                "summary": "搜索接口（标准藏品）",
+                "description": "搜索；带翻页；包括：书法、绘画",
+                "operationId": "Standard_jewel::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "分类。1：书法；2：绘画",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mounting",
+                        "in": "query",
+                        "description": "装裱",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "create_age",
+                        "in": "query",
+                        "description": "创作年代",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：时间；2：价格",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/thesis/search": {
+            "get": {
+                "tags": [
+                    "论文"
+                ],
+                "summary": "搜索接口（论文）",
+                "description": "搜索；带翻页",
+                "operationId": "Thesis::search",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "关键词",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "作者",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orgniz",
+                        "in": "query",
+                        "description": "单位",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pagesize",
+                        "in": "query",
+                        "description": "每个分页显示的数量",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "当前分页开始的编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortType",
+                        "in": "query",
+                        "description": "排序类型。0：默认：1：出版时间",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "descSorted",
+                        "in": "query",
+                        "description": "是否倒序。0：正序、1：倒序",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/thesis/detail": {
+            "get": {
+                "tags": [
+                    "论文"
+                ],
+                "summary": "获取论文详情信息",
+                "operationId": "Thesis::detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/upload/upload_file": {
+            "post": {
+                "tags": [
+                    "对象存储"
+                ],
+                "summary": "上传文件到COS",
+                "description": "COS",
+                "operationId": "Upload::upload_file",
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/register_with_phone": {
+            "post": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "注册用户（使用手机号）",
+                "description": "只能用手机号",
+                "operationId": "createUser",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sms_code",
+                        "in": "query",
+                        "description": "短信验证码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "get": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户登录",
+                "description": "自动判断用户名|手机号|邮箱",
+                "operationId": "User::login",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "query",
+                        "description": "用户名|手机号|邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/user/request_sms_code": {
+            "get": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "发送手机短信验证码",
+                "description": "可用于：登录、注册、修改密码等",
+                "operationId": "User::request_sms_code",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/user/verify_sms_code": {
+            "get": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "验证数字验证码",
+                "description": "可用于：登录、注册、修改密码等",
+                "operationId": "User::verify_sms_code",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sms_code",
+                        "in": "query",
+                        "description": "手机短信验证码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/user/reset_password": {
+            "post": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "通过手机验证码重置密码",
+                "operationId": "User::reset_password",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "phone": {
+                                        "description": "手机号",
+                                        "type": "number"
+                                    },
+                                    "sms_code": {
+                                        "description": "短信验证码",
+                                        "type": "number"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/start_saptcha_servlet": {
+            "get": {
+                "tags": [
+                    "行为验证"
+                ],
+                "summary": "行为验证：初始化 ",
+                "operationId": "User::start_saptcha_servlet",
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/verify_saptcha_servlet": {
+            "get": {
+                "tags": [
+                    "行为验证"
+                ],
+                "summary": "行为验证：二次验证",
+                "operationId": "User::verify_saptcha_servlet",
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/get_user_info": {
+            "get": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "获得用户信息",
+                "operationId": "User::get_user_info",
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/user/update_user_info": {
+            "post": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "更新用户信息",
+                "operationId": "User::update_user_info",
+                "requestBody": {
+                    "description": "新的用户信息",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user/delete_user": {
+            "delete": {
+                "tags": [
+                    "用户"
+                ],
+                "summary": "删除用户",
+                "operationId": "User::delete_user",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "query",
+                        "description": "用户名|手机号|邮箱",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user_item_tag": {
+            "get": {
+                "tags": [
+                    "用户物品标签"
+                ],
+                "summary": "获得用户标签列表",
+                "operationId": "User_item_tag::index",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "物品类别：图库1、文字库2",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/user_item_tag/add": {
+            "get": {
+                "tags": [
+                    "用户物品标签"
+                ],
+                "summary": "添加标签",
+                "operationId": "User_item_tag::update",
+                "parameters": [
+                    {
+                        "name": "item_id",
+                        "in": "query",
+                        "description": "物品id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "物品类别：图库1、文字库2",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/user_item_tag/remove": {
+            "get": {
+                "tags": [
+                    "用户物品标签"
+                ],
+                "summary": "删除标签",
+                "operationId": "User_item_tag::remove",
+                "parameters": [
+                    {
+                        "name": "item_id",
+                        "in": "query",
+                        "description": "物品id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/wiki/detail": {
+            "get": {
+                "tags": [
+                    "人物百科"
+                ],
+                "summary": "获取百科详情信息",
+                "operationId": "Wiki::detail",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "词条",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    },
+                    "400": {
+                        "description": "失败"
+                    }
+                }
+            }
+        },
+        "/wiki/update": {
+            "post": {
+                "tags": [
+                    "人物百科"
+                ],
+                "summary": "编辑人物信息",
+                "operationId": "Wiki::update",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/wiki/edit_life": {
+            "post": {
+                "tags": [
+                    "人物百科"
+                ],
+                "summary": "编辑生平信息，根据id是否存在自动判断新建或更新",
+                "operationId": "Wiki::edit_life",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "life_time": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "nianhao": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        },
+        "/wiki/delete_life": {
+            "delete": {
+                "tags": [
+                    "人物百科"
+                ],
+                "summary": "删除生平",
+                "operationId": "Wiki::delete_life",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "integer"
+                    },
+                    "birthday": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "introduction": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

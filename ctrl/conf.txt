@@ -1,0 +1,12 @@
+#机器列表
+ip[0]=172.18.0.1
+ssh_port[0]=22
+user[0]=root
+passwd[0]=shangbangkeji.123
+install_dir[0]=/var/www/html/short_video/
+
+ip[1]=172.21.16.13
+ssh_port[1]=22
+user[1]=root
+passwd[1]=shangbangkeji.123
+install_dir[1]=/var/www/html/short_video/
